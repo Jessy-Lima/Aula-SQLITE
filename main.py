@@ -33,16 +33,25 @@ CREATE TABLE IF NOT EXISTS alunos (
 # conexao.commit()
 
 #Inserir varios alunos de uma só vez
-alunos = [
-    ("Yago", 28, "Direito"),
-    ("jessica", 24, "Computação"),
-    ("Breno",52, "Computação"),
-]
-#executemany permite inserir múltiplas linhas e uma vez só
-cursor.executemany("""
-INSERT INTO alunos (nome, idade, curso)
-VALUES (?, ?, ?)
-""",
-(alunos)
+# alunos = [
+#     ("Yago", 28, "Direito"),
+#     ("jessica", 24, "Computação"),
+#     ("Breno",52, "Computação"),
+# ]
+# #executemany permite inserir múltiplas linhas e uma vez só
+# cursor.executemany("""
+# INSERT INTO alunos (nome, idade, curso)
+# VALUES (?, ?, ?)
+# """,
+# (alunos)
+# )
+# conexao.commit()
+
+#Atualizar dados no banco
+cursor.execute("""
+UPDATE alunos
+SET idade = ?, curso = ?
+WHERE  id = ?
+""",(61, "Medicina", 2 )
 )
 conexao.commit()
