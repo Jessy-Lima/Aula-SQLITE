@@ -8,14 +8,14 @@ conexao = sqlite3.connect("escola.db")
 cursor = conexao.cursor()
 
 #Criar uma tabela no banco
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS alunos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT NOT NULL,
-    idade INTERGER,
-    curso TEXT
-)
-""")
+# cursor.execute("""
+# CREATE TABLE IF NOT EXISTS alunos (
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     nome TEXT NOT NULL,
+#     idade INTERGER,
+#     curso TEXT
+# )
+# """)
 
 # nome = input("Digite o nome do aluno: ").lower()
 # idade = int(input("Digite a idade do aluno: "))
@@ -59,13 +59,19 @@ CREATE TABLE IF NOT EXISTS alunos (
 
 #Função listr dados no 
 #Consultar os dados no banco
-cursor.execute("SELECT * FROM alunos")
-#fetchall traz todas as linhas da consulta
-for linha in cursor.fetchall():
-    print(f"ID: {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]} ")
-print("--"* 30)
-pesquisar = input("Digite o curso que deseja pesquisar os alunos: ")
-cursor.execute("SELECT nome, idade FROM alunos WHERE curso = ?", (pesquisar,))
-print(f"Alunos do curso de {pesquisar}")
-for linha in cursor.fetchall():
-    print(f"NOME: {linha[0]} | IDADE: {linha[1]}")
+# cursor.execute("SELECT * FROM alunos")
+# #fetchall traz todas as linhas da consulta
+# for linha in cursor.fetchall():
+#     print(f"ID: {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]} ")
+# print("--"* 30)
+# pesquisar = input("Digite o curso que deseja pesquisar os alunos: ")
+# cursor.execute("SELECT nome, idade FROM alunos WHERE curso = ?", (pesquisar,))
+# print(f"Alunos do curso de {pesquisar}")
+# for linha in cursor.fetchall():
+#     print(f"NOME: {linha[0]} | IDADE: {linha[1]}")
+
+#Deletar dados do banco.
+cursor.execute("DELETE FROM alunos WHERE id = ?", (7,))
+conexao.commit()
+#Sempre fechar a conexão com o banco de dados
+conexao.close()
